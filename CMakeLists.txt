@@ -16,11 +16,10 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 endif()
 
 set(TARGET TSPSolver)
-
-add_compile_options(-fsycl  -Wall -Wextra -Wpedantic)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_GLIBCXX_DEBUG")
+add_compile_options(-fsycl -O0 -g -Wall -Wextra -Wpedantic)
 
 add_executable(${TARGET})
 add_subdirectory(src)
-add_subdirectory(include)
 
 target_include_directories(${TARGET} PRIVATE ./include)
