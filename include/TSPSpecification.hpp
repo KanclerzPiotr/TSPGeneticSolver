@@ -80,6 +80,22 @@ namespace TSPProblem
         SPECIAL,
     };
 
+    static std::map<std::string, EDGE_WEIGHT_TYPE> edgeWeightTypeStrToEnum{
+        {"EXPLICIT", EDGE_WEIGHT_TYPE::EXPLICIT},
+        {"EUC_2D", EDGE_WEIGHT_TYPE::EUC_2D},
+        {"EUC_3D", EDGE_WEIGHT_TYPE::EUC_3D},
+        {"MAX_2D", EDGE_WEIGHT_TYPE::MAX_2D},
+        {"MAX_3D", EDGE_WEIGHT_TYPE::MAX_3D},
+        {"MAN_2D", EDGE_WEIGHT_TYPE::MAN_2D},
+        {"MAN_3D", EDGE_WEIGHT_TYPE::MAN_3D},
+        {"CEIL_2D",EDGE_WEIGHT_TYPE::CEIL_2D},
+        {"GEO", EDGE_WEIGHT_TYPE::GEO},
+        {"ATT", EDGE_WEIGHT_TYPE::ATT},
+        {"XRAY1", EDGE_WEIGHT_TYPE::XRAY1},
+        {"XRAY2", EDGE_WEIGHT_TYPE::XRAY2},
+        {"SPECIAL", EDGE_WEIGHT_TYPE::SPECIAL}
+    };
+
     enum class EDGE_WEIGHT_FORMAT {
         FUNCTION,
         FULL_MATRIX,
@@ -91,6 +107,19 @@ namespace TSPProblem
         LOWER_COL,
         UPPER_DIAG_COL,
         LOWER_DIAG_COL
+    };
+
+    static std::map<std::string, EDGE_WEIGHT_FORMAT> edgeWeightFormatStrToEnum {
+        {"FUNCTION", EDGE_WEIGHT_FORMAT::FUNCTION},
+        {"FULL_MATRIX", EDGE_WEIGHT_FORMAT::FULL_MATRIX},
+        {"UPPER_ROW", EDGE_WEIGHT_FORMAT::UPPER_ROW},
+        {"LOWER_ROW", EDGE_WEIGHT_FORMAT::LOWER_ROW},
+        {"UPPER_DIAG_ROW", EDGE_WEIGHT_FORMAT::UPPER_DIAG_ROW},
+        {"LOWER_DIAG_ROW", EDGE_WEIGHT_FORMAT::LOWER_DIAG_ROW},
+        {"UPPER_COL", EDGE_WEIGHT_FORMAT::UPPER_COL},
+        {"LOWER_COL", EDGE_WEIGHT_FORMAT::LOWER_COL},
+        {"UPPER_DIAG_COL", EDGE_WEIGHT_FORMAT::UPPER_DIAG_COL},
+        {"LOWER_DIAG_COL", EDGE_WEIGHT_FORMAT::LOWER_DIAG_COL}
     };
 
     enum class EDGE_DATA_FORMAT {

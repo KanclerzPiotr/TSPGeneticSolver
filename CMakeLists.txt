@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.20)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_COMPILER icpx)
-set(CMAKE_BUILD_TYPE RelWithDebInfo)
+# set(CMAKE_CXX_COMPILER icpx)
+# set(CMAKE_BUILD_TYPE RelWithDebInfo)
 
 project(TSPGeneticSolver VERSION 1.0 LANGUAGES CXX)
 
@@ -16,8 +16,8 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 endif()
 
 set(TARGET TSPSolver)
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_GLIBCXX_DEBUG")
-add_compile_options(-fsycl -O0 -g -Wall -Wextra -Wpedantic)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
+add_compile_options(-O0 -g -Wall -Wextra -Wpedantic)
 
 add_executable(${TARGET})
 add_subdirectory(src)

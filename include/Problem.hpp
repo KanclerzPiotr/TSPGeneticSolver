@@ -14,6 +14,8 @@ class Problem {
 public:
     void setName(const std::string& name);
     void setType(const TYPE type);
+    void setComment(const std::string& comment);
+    void setDimension(int);
 
 private:
     std::string name;
@@ -33,6 +35,15 @@ void Problem::setType(const TYPE type)
     this->type = type;
 }
 
+void Problem::setComment(const std::string& comment)
+{
+    this->comment += comment;
+}
+
+void Problem::setDimension(int dimension)
+{
+    this->dimension = dimension;
+}
 } // namespace TSPProblem
 
 
