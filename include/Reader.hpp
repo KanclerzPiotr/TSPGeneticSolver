@@ -12,6 +12,7 @@ protected:
 public: 
     Reader(int dimension);
     virtual std::vector<int> readData(std::ifstream& file) const = 0;
+    virtual ~Reader() = default;
 
 };
 

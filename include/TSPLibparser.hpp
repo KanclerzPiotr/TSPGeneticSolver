@@ -27,7 +27,7 @@ private:
     void setComment(const std::string& text);
     
     const std::regex specification_regex = std::regex("^[A-Z_]+");
-    const std::regex value_regex = std::regex(": ([a-zA-Z0-9_ ,./\"]+)$");
+    const std::regex value_regex = std::regex(R"(: ([a-zA-Z0-9_ ,./"]+)\s*)");
     const std::string filepath;
     std::ifstream file;
     TSPProblem::Problem problem;
@@ -100,8 +100,6 @@ void TSPLibparser::readfile()
             break;
         case SPECIFICATION::DISPLAY_DATA_TYPE: 
             break;
-        case SPECIFICATION::NODE_COORD_SECTION: 
-            break;
         case SPECIFICATION::DEPOT_SECTION: 
             break;
         case SPECIFICATION::DEMAND_SECTION: 
@@ -111,12 +109,21 @@ void TSPLibparser::readfile()
         case SPECIFICATION::FIXED_EDGES_SECTION: 
             break;
         case SPECIFICATION::DISPLAY_DATA_SECTION: 
+            std::cout << "Display data section is not used" << std::endl;
             break;
         case SPECIFICATION::TOUR_SECTION: 
             throw std::runtime_error("Not implemented yet");
             break;
-        case SPECIFICATION::EDGE_WEIGHT_SECTION: 
-            ReaderFactory::makeReader(dimension, weightType, weightFormat);
+        case SPECIFICATION::NODE_COORD_SECTION: 
+        case SPECIFICATION::EDGE_WEIGHT_SECTION:
+        { 
+            auto reader =  ReaderFactory::makeReader(dimension, weightType, weightFormat);
+            problem.setData(reader->readData(file));
+            std::cout<< problem << std::endl;
+            break;
+        }
+        case SPECIFICATION::END_OF_FILE:
+            std::cout<< "Finished parsing file"<< std::endl;
             break;
         default:
             break;

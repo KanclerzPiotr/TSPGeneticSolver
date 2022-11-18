@@ -3,20 +3,23 @@
 
 #include "TSPSpecification.hpp"
 #include "ExplicitReaderFactory.hpp"
+#include "Euclidean2DReader.hpp"
 #include "Reader.hpp"
 
 class ReaderFactory {
 
 public:
-    static Reader* makeReader(int dimension, const TSPProblem::EDGE_WEIGHT_TYPE type, const TSPProblem::EDGE_WEIGHT_FORMAT format)
+    static std::unique_ptr<Reader> makeReader(int dimension, const TSPProblem::EDGE_WEIGHT_TYPE type, const TSPProblem::EDGE_WEIGHT_FORMAT format)
     {
         using namespace TSPProblem;
         switch (type)
         {
         case EDGE_WEIGHT_TYPE::EXPLICIT:
             return ExplicitReaderFactory::makeReader(dimension, format);
+        case EDGE_WEIGHT_TYPE::EUC_2D:
+            return std::make_unique<Euclidean2DReader>(dimension);
         default:
-            break;
+            throw std::invalid_argument("Unknown EDGE_WEIGHT_TYPE");
         }
     }
 

@@ -1,6 +1,9 @@
 #ifndef __TSPSPECIFICATION_H__
 #define __TSPSPECIFICATION_H__
 
+#include <map>
+#include <string>
+
 namespace TSPProblem
 {
 
@@ -22,7 +25,8 @@ namespace TSPProblem
         FIXED_EDGES_SECTION,
         DISPLAY_DATA_SECTION,
         TOUR_SECTION,
-        EDGE_WEIGHT_SECTION
+        EDGE_WEIGHT_SECTION,
+        END_OF_FILE
     };
 
     static std::map<std::string, SPECIFICATION> specificationStrToEnum{
@@ -43,7 +47,8 @@ namespace TSPProblem
         {"FIXED_EDGES_SECTION", SPECIFICATION::FIXED_EDGES_SECTION},
         {"DISPLAY_DATA_SECTION", SPECIFICATION::DISPLAY_DATA_SECTION},
         {"TOUR_SECTION", SPECIFICATION::TOUR_SECTION},
-        {"EDGE_WEIGHT_SECTION", SPECIFICATION::EDGE_WEIGHT_SECTION}
+        {"EDGE_WEIGHT_SECTION", SPECIFICATION::EDGE_WEIGHT_SECTION},
+        {"EOF", SPECIFICATION::END_OF_FILE}
     };
 
     enum class TYPE {
