@@ -4,6 +4,7 @@
 #include "TSPSpecification.hpp"
 #include "ExplicitReaderFactory.hpp"
 #include "Euclidean2DReader.hpp"
+#include "GeometricReader.hpp"
 #include "Reader.hpp"
 
 class ReaderFactory {
@@ -18,6 +19,8 @@ public:
             return ExplicitReaderFactory::makeReader(dimension, format);
         case EDGE_WEIGHT_TYPE::EUC_2D:
             return std::make_unique<Euclidean2DReader>(dimension);
+        case EDGE_WEIGHT_TYPE::GEO:
+            return std::make_unique<GeometricReader>(dimension);
         default:
             throw std::invalid_argument("Unknown EDGE_WEIGHT_TYPE");
         }
