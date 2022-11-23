@@ -8,9 +8,8 @@ class GeographicalReader : public NodeReader {
 public:
     GeographicalReader(int dimension);
     ~GeographicalReader() = default;
-    std::vector<int> readData(std::ifstream& file) const override;
 
-private:
+protected:
     Coord getGeographicalCoord(Coord x) const;
     int calcDistance(Coord i, Coord j) const override;
     const float PI = 3.141592;

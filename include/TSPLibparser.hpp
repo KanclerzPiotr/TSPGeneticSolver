@@ -85,45 +85,35 @@ void TSPLibparser::readfile()
             dimension = std::stoi(value);
             problem.setDimension(dimension);
             break;
-        case SPECIFICATION::CAPACITY: 
-            throw std::runtime_error("Not implemented yet");
-            break;
         case SPECIFICATION::EDGE_WEIGHT_TYPE: 
             weightType = edgeWeightTypeStrToEnum[value];
             break;
         case SPECIFICATION::EDGE_WEIGHT_FORMAT: 
             weightFormat = edgeWeightFormatStrToEnum[value];
             break;
-        case SPECIFICATION::EDGE_DATA_FORMAT: 
-            break;
-        case SPECIFICATION::NODE_COORD_TYPE: 
-            break;
-        case SPECIFICATION::DISPLAY_DATA_TYPE: 
-            break;
-        case SPECIFICATION::DEPOT_SECTION: 
-            break;
-        case SPECIFICATION::DEMAND_SECTION: 
-            break;
-        case SPECIFICATION::EDGE_DATA_SECTION: 
-            break;
-        case SPECIFICATION::FIXED_EDGES_SECTION: 
-            break;
-        case SPECIFICATION::DISPLAY_DATA_SECTION: 
-            std::cout << "Display data section is not used" << std::endl;
-            break;
-        case SPECIFICATION::TOUR_SECTION: 
-            throw std::runtime_error("Not implemented yet");
-            break;
         case SPECIFICATION::NODE_COORD_SECTION: 
         case SPECIFICATION::EDGE_WEIGHT_SECTION:
         { 
             auto reader =  ReaderFactory::makeReader(dimension, weightType, weightFormat);
             problem.setData(reader->readData(file));
-            std::cout<< problem << std::endl;
             break;
         }
         case SPECIFICATION::END_OF_FILE:
             std::cout<< "Finished parsing file"<< std::endl;
+            break;
+        case SPECIFICATION::DISPLAY_DATA_TYPE:
+        case SPECIFICATION::DISPLAY_DATA_SECTION: 
+            std::cout << "Display data section is not used" << std::endl;
+            break;
+        case SPECIFICATION::CAPACITY: 
+        case SPECIFICATION::EDGE_DATA_FORMAT: 
+        case SPECIFICATION::NODE_COORD_TYPE: 
+        case SPECIFICATION::DEPOT_SECTION: 
+        case SPECIFICATION::DEMAND_SECTION: 
+        case SPECIFICATION::EDGE_DATA_SECTION: 
+        case SPECIFICATION::FIXED_EDGES_SECTION: 
+        case SPECIFICATION::TOUR_SECTION: 
+            std::cout << "\t" << specification << " is not supported\n";
             break;
         default:
             break;

@@ -8,9 +8,8 @@ class Euclidean2DReader : public NodeReader {
 public:
     Euclidean2DReader(int dimension);
     ~Euclidean2DReader() = default;
-    std::vector<int> readData(std::ifstream& file) const override;
 
-private:
+protected:
     int calcDistance(Coord i, Coord j) const override;
 
 };

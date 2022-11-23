@@ -13,7 +13,7 @@ namespace {
 class NodeReader : public Reader {
 public:
     NodeReader(int dimension);
-    ~NodeReader() = default;
+    virtual ~NodeReader() = default;
     std::vector<int> readData(std::ifstream& file) const override;
 
 protected:

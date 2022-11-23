@@ -17,7 +17,7 @@ endif()
 
 set(TARGET TSPSolver)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
-add_compile_options(-O0 -g -Wall -Wextra -Wpedantic)
+add_compile_options(-O0 -g -Wall -Wextra)
 
 add_executable(${TARGET})
 add_subdirectory(src)
