@@ -6,7 +6,6 @@
 
 
 class ExplicitReaderFactory {
-
 public:
     static std::unique_ptr<Reader> makeReader(int dimension, const TSPProblem::EDGE_WEIGHT_FORMAT format)
     {

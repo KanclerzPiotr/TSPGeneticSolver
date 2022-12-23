@@ -11,8 +11,7 @@
 
 #include "ReaderFactory.hpp" 
 
-class TSPLibparser
-{
+class TSPLibparser {
 public:
     TSPLibparser(const std::string& filepath);
     ~TSPLibparser() = default;
