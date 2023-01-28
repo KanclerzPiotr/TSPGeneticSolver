@@ -29,22 +29,26 @@ cmake_minimum_required(VERSION 3.0.0)
 
 # set(CMAKE_CXX_COMPILER clang++)
 
-project(TSPGeneticSolver VERSION 0.1.0)
+project(TSPGeneticSolver VERSION 0.1.0 LANGUAGES CXX)
 
 set(TARGET TSPSolver)
-
-if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-      set(SYCL_FLAGS 
-            "-fsycl" 
+if(${CMAKE_CXX_COMPILER} MATCHES "clang")
+      set(CUDA_FLAGS 
             "-fsycl-targets=nvptx64-nvidia-cuda"
             "-Wno-unknown-cuda-version"
             "-Wno-linker-warnings"
-            "-O2")
+            )
 endif()
+
+set (SYCL_FLAGS 
+      "${CUDA_FLAGS}"
+      "-fsycl"
+      "-fsycl-unnamed-lambda"
+      "-O3")
+
 
 add_executable(${TARGET})
 add_subdirectory(src)
-
 
 target_compile_features(${TARGET} PRIVATE cxx_std_17)
 target_compile_options(${TARGET} PUBLIC ${SYCL_FLAGS})

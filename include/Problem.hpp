@@ -21,7 +21,7 @@ public:
     void setDimension(int);
     void setData(std::vector<int>&& data);
 
-private:
+public:
     std::string name;
     std::string comment;
     TYPE type;

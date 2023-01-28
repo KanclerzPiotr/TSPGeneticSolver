@@ -16,6 +16,8 @@ public:
     TSPLibparser(const std::string& filepath);
     ~TSPLibparser() = default;
 
+    TSPProblem::Problem getProblem() const;
+
 private:
     void openFile();
     void readfile();
@@ -34,6 +36,8 @@ private:
 
 };
 
+
+
 void TSPLibparser::openFile() {
     file = std::ifstream(filepath);
     std::cout<< filepath << std::endl;
@@ -47,6 +51,10 @@ TSPLibparser::TSPLibparser(const std::string& filepath) :
     openFile();
 
     readfile();
+}
+
+TSPProblem::Problem TSPLibparser::getProblem() const {
+    return std::move(problem);
 }
 
 std::pair<std::string, std::string> TSPLibparser::parseLine(const std::string& line)
