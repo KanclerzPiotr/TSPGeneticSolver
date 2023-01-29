@@ -51,9 +51,9 @@ GeneticAlgorithm::GeneticAlgorithm(int dimension, int population, int iterations
     fitnessVec(std::vector<float>(population)),
     bestPath(std::vector<int>(pathSize)),
     bestPathLength(std::numeric_limits<float>::max()),
-    q(sycl::queue{sycl::gpu_selector_v})
+    q(sycl::queue{sycl::cpu_selector_v})
 {
-    std::cout<< "Algorithm running on "<< q.get_device().get_info<sycl::info::device::name>() << std::endl;
+    // std::cout<< "Algorithm running on "<< q.get_device().get_info<sycl::info::device::name>() << std::endl;
 }
 
 void GeneticAlgorithm::generatePopulation(sycl::buffer<int, 2>& populationBuff) {
@@ -147,7 +147,7 @@ void GeneticAlgorithm::run()
     buffer<int, 2> neighborsMatrix{neighborsMatrixVec.data(), range<2>(pathSize, pathSize)};
     buffer<float, 1> fitness{fitnessVec};
     
-    std::cout << "Generating" << std::endl;
+    // std::cout << "Generating" << std::endl;
     auto start1 = std::chrono::steady_clock::now();
     generatePopulation(population);
     for(int i = 0; i < iterations; ++i) {
@@ -174,8 +174,8 @@ void GeneticAlgorithm::run()
             currentBestPathIndex = std::distance(begin(lenght), currentBestPathIterator);
             host_accessor lenght_acc(lenght, read_only);
             currentBestPathLength = lenght_acc[currentBestPathIndex];
-            std::cout<< " Current best path length: "<< currentBestPathLength 
-                << " Current best path index: " << currentBestPathIndex << " Best path length " << bestPathLength << std::endl;
+            // std::cout<< " Current best path length: "<< currentBestPathLength 
+            //     << " Current best path index: " << currentBestPathIndex << " Best path length " << bestPathLength << std::endl;
         }
 
         // std::cout<< "Calculating fittness " <<std::endl;
@@ -201,7 +201,7 @@ void GeneticAlgorithm::run()
         std::swap(population, newPopulation);
         auto end = std::chrono::steady_clock::now();
         std::chrono::duration<double> elapsed_seconds = end-start;
-        std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
+        std::cout << elapsed_seconds.count() << "\n";
     }
     auto end1 = std::chrono::steady_clock::now();
     std::chrono::duration<double> elapsed_seconds1 = end1-start1;

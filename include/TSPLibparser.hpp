@@ -40,7 +40,6 @@ private:
 
 void TSPLibparser::openFile() {
     file = std::ifstream(filepath);
-    std::cout<< filepath << std::endl;
     if (not file.is_open())
         throw std::runtime_error("File in: " + filepath + "\n cannot be open!");
 }
@@ -106,11 +105,11 @@ void TSPLibparser::readfile()
             break;
         }
         case SPECIFICATION::END_OF_FILE:
-            std::cout<< "Finished parsing file"<< std::endl;
+            // std::cout<< "Finished parsing file"<< std::endl;
             break;
         case SPECIFICATION::DISPLAY_DATA_TYPE:
         case SPECIFICATION::DISPLAY_DATA_SECTION: 
-            std::cout << "Display data section is not used" << std::endl;
+            // std::cout << "Display data section is not used" << std::endl;
             break;
         case SPECIFICATION::CAPACITY: 
         case SPECIFICATION::EDGE_DATA_FORMAT: 
@@ -120,7 +119,7 @@ void TSPLibparser::readfile()
         case SPECIFICATION::EDGE_DATA_SECTION: 
         case SPECIFICATION::FIXED_EDGES_SECTION: 
         case SPECIFICATION::TOUR_SECTION: 
-            std::cout << "\t" << specification << " is not supported\n";
+            // std::cout << "\t" << specification << " is not supported\n";
             break;
         default:
             break;
