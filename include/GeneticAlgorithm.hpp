@@ -51,7 +51,7 @@ GeneticAlgorithm::GeneticAlgorithm(int dimension, int population, int iterations
     fitnessVec(std::vector<float>(population)),
     bestPath(std::vector<int>(pathSize)),
     bestPathLength(std::numeric_limits<float>::max()),
-    q(sycl::queue{sycl::cpu_selector_v})
+    q(sycl::queue{sycl::gpu_selector_v})
 {
     // std::cout<< "Algorithm running on "<< q.get_device().get_info<sycl::info::device::name>() << std::endl;
 }

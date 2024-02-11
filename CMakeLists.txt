@@ -44,7 +44,8 @@ set (SYCL_FLAGS
       "${CUDA_FLAGS}"
       "-fsycl"
       "-fsycl-unnamed-lambda"
-      "-O3")
+      "-O3"
+      "-g")
 
 
 add_executable(${TARGET})
